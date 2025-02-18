@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const wordList = ["web3", "solana", "ethereum", "bitcoin", "degen", "crypto"];
 
@@ -15,6 +15,8 @@ const GameComponent = () => {
   const [userGuess, setUserGuess] = useState("");
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(0);
+  const [hint, setHint] = useState(""); 
+  const [hintUsed, setHintUsed] = useState(false);
 
   const generateWord = () => {
     const word = wordList[Math.floor(Math.random() * wordList.length)];
@@ -33,6 +35,15 @@ const GameComponent = () => {
       setMessage(" Incorrect, try again!");
     }
   };
+
+  const revealHint = () => {
+    setHint(`Hint: First letter is "${originalWord.charAt(0).toUpperCase()}"`);
+    setHintUsed(true);
+  };
+
+  useEffect(() => {
+    generateWord();
+  }, []);
 
 
   return (
