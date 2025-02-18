@@ -19,3 +19,15 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.text-neon-green { color: #00ff00; }
+.text-neon-blue { color: #00e1ff; }
+.text-neon-purple { color: #ae00ff; }
+.text-neon-yellow { color: #ffff00; }
+.text-neon-red { color: #ff0000; }
+.text-neon-orange { color: #ff9500; }
+.bg-neon-green { background-color: #00ff00; }
+.bg-neon-blue { background-color: #00e1ff; }
+.bg-neon-purple { background-color: #ae00ff; }
+.bg-neon-orange { background-color: #ff9500; }
