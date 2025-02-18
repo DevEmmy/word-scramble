@@ -15,6 +15,26 @@ const GameComponent = () => {
   const [userGuess, setUserGuess] = useState("");
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(0);
+
+  const generateWord = () => {
+    const word = wordList[Math.floor(Math.random() * wordList.length)];
+    setOriginalWord(word);
+    setScrambledWord(scrambleWord(word));
+    setUserGuess("");
+    setMessage("");
+  };
+
+  const checkGuess = () => {
+    if (userGuess.toLowerCase() === originalWord) {
+      setMessage("Correct! Next word...");
+      setScore(score + 1);
+      setTimeout(generateWord, 1000);
+    } else {
+      setMessage(" Incorrect, try again!");
+    }
+  };
+
+
   return <div></div>;
 };
 
