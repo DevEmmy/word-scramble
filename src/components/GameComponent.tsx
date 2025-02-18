@@ -29,7 +29,8 @@ const GameComponent = () => {
   const checkGuess = () => {
     if (userGuess.toLowerCase() === originalWord) {
       setMessage("Correct! Next word...");
-      setScore(score + 1);
+      setScore(score + (hintUsed ? 0.5 : 1)); 
+      setHintUsed(false);
       setTimeout(generateWord, 1000);
     } else {
       setMessage(" Incorrect, try again!");
@@ -67,6 +68,17 @@ const GameComponent = () => {
       >
         Submit Guess
       </button>
+
+
+      <button
+          onClick={revealHint}
+          className="mt-2 w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded transition"
+          disabled={hintUsed} // Disable after first use
+        >
+          {hintUsed ? "Hint Used" : "Show Hint"}
+        </button>
+
+        {hint && <p className="mt-2 text-yellow-300">{hint}</p>}
 
       {message && <p className="mt-4">{message}</p>}
     </div>
