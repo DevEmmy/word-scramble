@@ -17,6 +17,7 @@ const GameComponent = () => {
   const [score, setScore] = useState(0);
   const [hint, setHint] = useState(""); 
   const [hintUsed, setHintUsed] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(30); // Add state for countdown timer
 
   const generateWord = () => {
     const word = wordList[Math.floor(Math.random() * wordList.length)];
@@ -24,6 +25,7 @@ const GameComponent = () => {
     setScrambledWord(scrambleWord(word));
     setUserGuess("");
     setMessage("");
+    setTimeLeft(30); // Reset timer when a new word is generated
   };
 
   const checkGuess = () => {
@@ -47,6 +49,15 @@ const GameComponent = () => {
     generateWord();
   }, []);
 
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setMessage("Time's up! Next word...");
+      setTimeout(generateWord, 1000);
+    }
+  }, [timeLeft]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4">
@@ -82,6 +93,7 @@ const GameComponent = () => {
         {hint && <p className="mt-2 text-yellow-300">{hint}</p>}
 
       {message && <p className="mt-4">{message}</p>}
+      <p className="mt-4 text-lg">Time Left: <span className="font-bold">{timeLeft}s</span></p>
     </div>
 
     <p className="mt-4 text-lg">Score: <span className="font-bold">{score}</span></p>
