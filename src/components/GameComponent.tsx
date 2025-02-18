@@ -35,7 +35,34 @@ const GameComponent = () => {
   };
 
 
-  return <div></div>;
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4">
+    <h1 className="text-3xl font-bold mb-6">Word Scramble Game</h1>
+    
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <p className="text-xl mb-4">Unscramble: <span className="font-bold text-yellow-400">{scrambledWord}</span></p>
+
+      <input
+        type="text"
+        className="w-full p-2 rounded border text-black"
+        placeholder="Your guess..."
+        value={userGuess}
+        onChange={(e) => setUserGuess(e.target.value)}
+      />
+
+      <button
+        onClick={checkGuess}
+        className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded transition"
+      >
+        Submit Guess
+      </button>
+
+      {message && <p className="mt-4">{message}</p>}
+    </div>
+
+    <p className="mt-4 text-lg">Score: <span className="font-bold">{score}</span></p>
+  </div>
+  );
 };
 
 export default GameComponent;
