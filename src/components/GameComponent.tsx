@@ -31,6 +31,7 @@ const GameComponent = () => {
       setMessage("Correct! Next word...");
       setScore(score + (hintUsed ? 0.5 : 1)); 
       setHintUsed(false);
+      setHint("")
       setTimeout(generateWord, 1000);
     } else {
       setMessage(" Incorrect, try again!");
